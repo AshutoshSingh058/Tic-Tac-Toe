@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+body {
+  display: flex;
+  height: 100vh;
+  background-color: #202020;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+#main {
+  flex-basis: 80%;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+#gameArea {
+  display: flex;
+  justify-content: space-evenly;
+  height: 70vh;
+}
+
+#grid {
+  border-collapse: collapse;
+  align-self: center;
+  z-index: 1;
+}
+canvas {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+td {
+  height: 2.5rem;
+  width: 2.5rem;
+  color: whitesmoke;
+  font-size: 2rem;
+  text-align: center;
+}
+.border {
+  border: 2px solid azure;
+}
+.border-top {
+  border-top: 2px solid azure;
+}
+.border-left {
+  border-left: 2px solid azure;
+}
+.hidden {
+  visibility: hidden;
+  border: none;
+  pointer-events: none;
+}
+.disabled {
+  background-color: gray;
+  pointer-events: none;
+}
+.wildcard {
+  background-color: violet;
+  pointer-events: none;
+}
+.player1 {
+  color: #007fff;
+  font-size: 1.5rem;
+}
+.player2 {
+  color: #ff2400;
+  font-size: 1.5rem;
+}
+.result {
+  color: white;
+}
+input[type="radio"] {
+  visibility: hidden;
+  position: absolute;
+}
+.bottom {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-direction: column;
+}
+div.mode-selector {
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: #303030;
+}
+div.mode-selector > label {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+div.mode-selector > .help {
+  position: absolute;
+  right: 15px;
+  visibility: hidden;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  padding-bottom: 6px;
+  text-decoration: none;
+  border: 2px solid white;
+  text-align: center;
+}
+div.mode-selector:hover {
+  background-color: gray;
+  .help {
+    visibility: visible;
+  }
+}
+div.mode-selector:has(input:checked) {
+  background-color: rebeccapurple;
+}
+#sidebar {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem;
+  padding: 20px 10px;
+  background-color: #252525;
+}
+.blank {
+  flex-grow: 1;
+}
+button {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 6px;
+  border: none;
+  background-color: #5ace5a;
+  box-shadow: 4px 4px #002500;
+}
+.showMenu {
+  background-color: transparent;
+  display: none;
+}
+
+@keyframes appear {
+  from {
+    top: 100vh;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes disappear {
+  from {
+    top: 0;
+  }
+  to {
+    top: 100vh;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #gameArea {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+@media only screen and (max-width: 450px) {
+  body {
+    display: block;
+  }
+  .bottom {
+    gap: 1.2rem;
+  }
+  .showMenu {
+    display: inline;
+  }
+  .sm-hidden {
+    visibility: hidden;
+  }
+  .lg-only {
+    display: none;
+  }
+  #sidebar {
+    position: absolute;
+    z-index: 2;
+    top: 0%;
+    height: 100vh;
+    width: 100%;
+    &.hidden {
+      animation: 0.5s disappear ease-in forwards;
+    }
+    &.visible {
+      animation: 0.5s appear ease-in forwards;
+    }
+  }
+}
